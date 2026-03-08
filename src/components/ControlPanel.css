@@ -1,0 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+.g3d-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* HUD: status at a glance */
+.g3d-hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.95);
+  pointer-events: auto;
+}
+.g3d-hud-title {
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 4px;
+}
+.g3d-hud-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.g3d-hud-alert {
+  color: #f87171;
+  font-weight: 500;
+}
+.g3d-hud-alert-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.g3d-hud-alert-btn:hover {
+  text-decoration: underline;
+  color: #fca5a5;
+}
+.g3d-alerts-list {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  max-height: 200px;
+  overflow-y: auto;
+}
+.g3d-alerts-list-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 6px;
+}
+.g3d-alerts-list-item {
+  display: block;
+  width: 100%;
+  padding: 4px 0;
+  margin: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.g3d-alerts-list-item:hover {
+  background: rgba(248, 113, 113, 0.2);
+  color: #fca5a5;
+}
+.g3d-alerts-list-hint {
+  margin-top: 6px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.g3d-hud-ok {
+  color: #86efac;
+  font-size: 11px;
+}
+
+/* Tooltip on server hover */
+.g3d-tooltip {
+  z-index: 30;
+  padding: 8px 10px;
+  background: rgba(15, 15, 18, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.9);
+  min-width: 140px;
+}
+.g3d-tooltip-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 11px;
+}
+.g3d-tooltip-row {
+  margin-bottom: 2px;
+}
+.g3d-tooltip-row:last-of-type {
+  margin-bottom: 0;
+}
+.g3d-tooltip-alert {
+  margin-top: 6px;
+  padding: 2px 6px;
+  background: rgba(248, 113, 113, 0.25);
+  color: #fca5a5;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+}
+.g3d-tooltip-hint {
+  margin-top: 6px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.g3d-tooltip-links {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.g3d-tooltip-link {
+  font-size: 11px;
+  color: #7dd3fc;
+  text-decoration: none;
+  cursor: pointer;
+}
+.g3d-tooltip-link:hover {
+  text-decoration: underline;
+  color: #bae6fd;
+}
+.g3d-tooltip-muted {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: help;
+}
+.g3d-tooltip-pinned {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+.g3d-tooltip-details {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.g3d-tooltip-details-title {
+  font-weight: 600;
+  font-size: 11px;
+  margin-bottom: 4px;
+  opacity: 0.9;
+}
+
+.g3d-settings-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+.g3d-settings-btn:hover {
+  opacity: 1;
+}
+
+.g3d-floating-menu {
+  position: absolute;
+  top: 44px;
+  right: 8px;
+  z-index: 20;
+  min-width: 200px;
+  max-height: min(70vh, 420px);
+  padding: 10px 12px;
+  background: rgba(24, 24, 27, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.9);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.g3d-menu-section {
+  margin-bottom: 8px;
+}
+.g3d-menu-section:last-child {
+  margin-bottom: 0;
+}
+
+.g3d-menu-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  width: 100%;
+  padding: 2px 0;
+  margin-bottom: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: color 0.15s ease;
+}
+.g3d-menu-section-header:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+.g3d-menu-section-header .g3d-menu-section-chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  font-size: 10px;
+  line-height: 1;
+  opacity: 0.9;
+}
+.g3d-menu-section-header[aria-expanded='false'] .g3d-menu-section-chevron {
+  transform: rotate(-90deg);
+}
+.g3d-menu-section-body {
+  overflow: hidden;
+}
+.g3d-menu-section-body.collapsed {
+  display: none;
+}
+
+.g3d-menu-section-title {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.g3d-menu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 22px;
+  margin-bottom: 2px;
+}
+.g3d-menu-row:last-child {
+  margin-bottom: 0;
+}
+
+.g3d-menu-label {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  min-width: 82px;
+}
+
+.g3d-menu-value {
+  flex-shrink: 0;
+  min-width: 28px;
+  text-align: right;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.g3d-menu-slider {
+  flex: 1;
+  min-width: 0;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  outline: none;
+}
+.g3d-menu-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.g3d-menu-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.g3d-menu-toggle {
+  position: relative;
+  width: 28px;
+  height: 14px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.g3d-menu-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  transition: transform 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.g3d-menu-toggle.on {
+  background: rgba(59, 130, 246, 0.6);
+}
+.g3d-menu-toggle.on::after {
+  transform: translateX(14px);
+}
+
+.g3d-menu-color {
+  width: 24px;
+  height: 14px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  flex-shrink: 0;
+}
+.g3d-menu-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.g3d-menu-color::-webkit-color-swatch {
+  border: none;
+  border-radius: 3px;
+}
+
+.g3d-menu-select {
+  flex: 1;
+  min-width: 0;
+  height: 22px;
+  padding: 0 6px;
+  font-size: 10px;
+  font-family: inherit;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.g3d-menu-select option {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.g3d-menu-btn {
+  width: 100%;
+  margin-top: 6px;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.g3d-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}

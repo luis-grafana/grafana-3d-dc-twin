@@ -1,0 +1,30 @@
+services:
+  grafana:
+    user: root
+    container_name: 'grafana-3d-dc-twin'
+
+    build:
+      context: .
+      args:
+        grafana_image: ${GRAFANA_IMAGE:-grafana-enterprise}
+        grafana_version: ${GRAFANA_VERSION:-12.3.2}
+        development: ${DEVELOPMENT:-false}
+        anonymous_auth_enabled: ${ANONYMOUS_AUTH_ENABLED:-true}
+    ports:
+      # Use 3010 so it doesn't conflict with dc_simulator on 3000
+      - 3010:3000/tcp
+    volumes:
+      # Mount whole plugin root so Grafana finds plugin.json and dist/module.js
+      - ..:/var/lib/grafana/plugins/grafana-3d-dc-twin
+      - ../provisioning:/etc/grafana/provisioning
+      - ..:/root/grafana-3d-dc-twin
+
+    environment:
+      NODE_ENV: development
+      GF_LOG_FILTERS: plugin.grafana-3d-dc-twin:debug
+      GF_LOG_LEVEL: debug
+      GF_DATAPROXY_LOGGING: 1
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: grafana-3d-dc-twin
+      # Require login (override image default of anonymous auth)
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_AUTH_BASIC_ENABLED: "true"
